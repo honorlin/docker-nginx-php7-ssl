@@ -1,0 +1,20 @@
+version: '2'
+services:
+  nginx:
+    image: skiychan/nginx-php
+    container_name: twgreen_wordpress_nginx
+    restart: always
+    volumes:
+      - ./www-data:/data/www
+      - ./certificates-keys:/usr/local/nginx/conf/ssl
+    environment:
+      - PROXY_WEB=On 
+      - PROXY_CRT=your_crt_name
+      - PROXY_KEY=your_key_name
+      - PROXY_DOMAIN=your_domain 
+    ports:
+      - 8001:80
+      - 443:443
+    networks:
+      - front
+
